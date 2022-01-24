@@ -1,0 +1,86 @@
+﻿
+@model FirstDBApp.Models.EmployeeModel
+
+
+@{
+    ViewData["Title"] = "Home Page";
+    
+}
+
+    <style>
+        table,th,td{
+            border: 2px solid red;
+        }
+
+        th,td{
+            min-width: 150px;
+        }
+    </style>
+
+    <a asp-controller="Home" asp-action="AddNewRecord" data-bs-toggle="modal" data-bs-target="#AddNewRecord">Add New</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.emplist)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.name</td>
+                    <td>@item.email</td>
+                    <td>@item.phone</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <div class="modal" tabindex="-1" id="AddNewRecord">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Record</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" asp-controller="Home" asp-action="AddNewRecord">
+          <div class="modal-body">
+            <div class="form-group">
+                <label>ID</label>
+                <input type="text" class="form-control" name="id" required />
+            </div>
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" name="name" required />
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" name="Email" required />
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" class="form-control" name="Phone" required />
+            </div>
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Clear</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+      
+    </div>
+  </div>
+</div>
+
+
+
